@@ -8,6 +8,7 @@ Install from the package manager console:
     PM> Install-Package SlugGenerator
 
 ##Slug generation
+###Simple usage
 ```cs
   using SlugGenerator;
   
@@ -19,7 +20,8 @@ Install from the package manager console:
   
   "my test text".GenerateSlug("_"); // set "_" as separator. Method return my_test_text
 ```
-###Multilanguage feature
+
+##Multilanguage feature
 Slug generator transliteration all basic languages to english charters
 
 ```cs
@@ -28,4 +30,28 @@ Slug generator transliteration all basic languages to english charters
   // Russian language
   "my test text".GenerateSlug(); // return privet-kak-dela
   "你好你怎麼樣".GenerateSlug(); // return ni-hao-ni-zen-mo-yang-
+```
+##Generate Unique slug 
+This method help u Generate unique slug already exist on list
+```cs
+  using SlugGenerator;
+    public class ConcreteSlug : ISlug
+    {
+        public string Slug { get; set; }
+    }
+  
+  
+    var slug = item.Text.GenerateUniqueSlug(items);
+    var itemsList = new List<ConcreteSlug>
+            {
+                new ConcreteSlug
+                {
+                    Slug = "test"
+                },
+                new ConcreteSlug
+                {
+                    Slug = "test2"
+                }
+            };
+    var slug = "test".GenerateUniqueSlug(itemsList); // return slug which is not in an itemsList
 ```
