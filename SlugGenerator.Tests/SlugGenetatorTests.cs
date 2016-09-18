@@ -16,6 +16,13 @@ namespace SlugGenerator.Tests
             Assert.IsNotNull(slug);
             Console.WriteLine(slug);
         }
+        [Test, TestCaseSource(nameof(GenerateSlugTestCases))]
+        public void GenerateSlug_WithValidDataAndOtherSlugSeparator_ShouldReturnSlugString(string text)
+        {
+            var slug = text.GenerateSlug("_");
+            Assert.IsNotNull(slug);
+            Console.WriteLine(slug);
+        }
         [Test, TestCaseSource(nameof(GenerateUniqueSlugTestCases))]
         public void GenerateUniqueSlug_WithValidData_ShouldReturnSlugString(List<ConcreteSlug> items)
         {

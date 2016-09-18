@@ -17,8 +17,8 @@ namespace SlugGenerator
         public static string GenerateSlug(this string incomingString, string slugSeparator = "-")
         {
             incomingString = incomingString.Unidecode();
-            incomingString = Regex.Replace(incomingString, @"\s+", slugSeparator);
-            var alphaNum = Regex.Replace(incomingString, @"[^A-Za-z0-9-]+", "");
+            var alphaNum = Regex.Replace(incomingString, @"[^a-zA-Z0-9\s]", string.Empty);
+            alphaNum = Regex.Replace(alphaNum, @"\s+", slugSeparator);
             return alphaNum.ToLower();
         }
 
