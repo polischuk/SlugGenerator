@@ -32,7 +32,7 @@ Slug generator transliteration all basic languages to english charters
   "你好你怎麼樣".GenerateSlug(); // return ni-hao-ni-zen-mo-yang-
 ```
 ##Generate Unique slug 
-This method help u Generate unique slug already exist on list
+This method help u Generate unique slug, if slug already exist on list, method generate slug with additional numbers or guid.
 ```cs
   using SlugGenerator;
     public class ConcreteSlug : ISlug
