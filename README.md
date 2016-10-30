@@ -18,7 +18,7 @@ Install from the package manager console:
 ```cs
   using SlugGenerator;
   
-  "my test text".GenerateSlug("_"); // set "_" as separator. Method return my_test_text
+  "my test text".GenerateSlug("_"); // set "_" as separator and return "my_test_text" string
 ```
 
 ##Multilanguage feature
@@ -28,7 +28,7 @@ Slug generator transliteration all basic languages to english charters
   using SlugGenerator;
   
   // Russian language
-  "my test text".GenerateSlug(); // return privet-kak-dela
+  "привет как дела".GenerateSlug(); // return privet-kak-dela
   "你好你怎麼樣".GenerateSlug(); // return ni-hao-ni-zen-mo-yang-
 ```
 ##Generate Unique slug 
