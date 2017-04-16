@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using UnidecodeSharpFork;
 
@@ -36,6 +38,29 @@ namespace SlugGenerator
             {
                 slug += slug.GetHashCode();
                 if (items.Any(m => m.Slug == slug))
+                {
+                    slug += Guid.NewGuid();
+                }
+            }
+            return slug;
+        }
+
+        /// <summary>
+        /// Method generate slug by text (multiple languages)
+        /// </summary>
+        /// <param name="incomingString">Text for slug</param>
+        /// <param name="expression"></param>
+        /// <param name="slugSeparator">Slug separator, example "-" or "_"</param>
+        /// <param name="items">list of exist items</param>
+        /// <returns>Slug for url</returns>
+        public static string GenerateUniqueSlug<TSource>(this string incomingString, List<TSource> items, Expression<Func<TSource, string>> expression, string slugSeparator = "-")
+        {
+            var propInfo = ((MemberExpression)expression.Body).Member as PropertyInfo;
+            var slug = GenerateSlug(incomingString, slugSeparator);
+            if (items.Any(m => propInfo?.GetValue(m)?.ToString() == slug))
+            {
+                slug += slug.GetHashCode();
+                if (items.Any(m => propInfo?.GetValue(m)?.ToString() == slug))
                 {
                     slug += Guid.NewGuid();
                 }

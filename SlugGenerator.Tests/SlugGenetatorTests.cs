@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using Ploeh.AutoFixture;
+using Ploeh.AutoFixture.NUnit3;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace SlugGenerator.Tests
@@ -24,7 +26,7 @@ namespace SlugGenerator.Tests
             Console.WriteLine(slug);
         }
         [Test, TestCaseSource(nameof(GenerateUniqueSlugTestCases))]
-        public void GenerateUniqueSlug_WithValidData_ShouldReturnSlugString(List<ConcreteSlug> items)
+        public void GenerateUniqueSlug_WithValidData_ShouldReturnUniqueSlugString(List<ConcreteSlug> items)
         {
             foreach (var item in items)
             {
@@ -32,6 +34,30 @@ namespace SlugGenerator.Tests
                 Assert.IsNotNull(item.Slug);
                 Console.WriteLine(item.Slug);
                 var count = items.Count(concreteSlug => concreteSlug.Slug == item.Slug);
+                Assert.IsTrue(count == 1);
+            }
+        }
+        [Test, AutoData]
+        public void GenerateUniqueSlugAndCustomProperty_WithRandomText_ShouldReturnSlugString(List<Entity> items)
+        {
+            foreach (var item in items)
+            {
+                item.SlugProperty = item.Text.GenerateUniqueSlug(items, i => i.SlugProperty);
+                Assert.IsNotNull(item.SlugProperty);
+                Console.WriteLine(item.SlugProperty);
+                var count = items.Count(concreteSlug => concreteSlug.SlugProperty == item.SlugProperty);
+                Assert.IsTrue(count == 1);
+            }
+        }
+        [Test, TestCaseSource(nameof(GenerateEntityListUniqueSlugTestCases))]
+        public void GenerateUniqueSlugAndCustomProperty_WithSameText_ShouldReturnUniqueSlugString(List<Entity> items)
+        {
+            foreach (var item in items)
+            {
+                item.SlugProperty = item.Text.GenerateUniqueSlug(items, i => i.SlugProperty);
+                Assert.IsNotNull(item.SlugProperty);
+                Console.WriteLine(item.SlugProperty);
+                var count = items.Count(concreteSlug => concreteSlug.SlugProperty == item.SlugProperty);
                 Assert.IsTrue(count == 1);
             }
         }
@@ -79,18 +105,32 @@ namespace SlugGenerator.Tests
                     new ConcreteSlug
                     {
                         Text = "Дует на море циклон123, попадает на Цейлон"
-                    },
-                    new ConcreteSlug
+                    }
+                };
+                var testCaseData = new List<TestCaseData>
+                {
+                    new TestCaseData(slugListItems)
+                };
+                return testCaseData;
+            }
+        }
+        private static IEnumerable<TestCaseData> GenerateEntityListUniqueSlugTestCases
+        {
+            get
+            {
+                var slugListItems = new List<Entity>
+                {
+                    new Entity
                     {
-                        Text = "Тестируем раз32ную КІРїЛЁЦґ"
+                        Text = "Дует на море циклон, попадает на Цейлон"
                     },
-                    new ConcreteSlug
+                    new Entity
                     {
-                        Text = "Тестируем разcxzzcxную КІРїЛЁЦґ"
+                        Text = "Дует на море циклон, попадает на Цейлон"
                     },
-                    new ConcreteSlug
+                    new Entity
                     {
-                        Text = "Тестируем разную КІРїЛЁЦґ"
+                        Text = "Дует на море циклон, попадает на Цейлон"
                     }
                 };
                 var testCaseData = new List<TestCaseData>

@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace SlugGenerator.Tests
 {
+    
     public class ConcreteSlug : ISlug
     {
         public string Text { get; set; }
         public string Slug { get; set; }
+    }
+    public class Entity
+    {
+        public string Text { get; set; }
+        public string SlugProperty { get; set; }
     }
 }
