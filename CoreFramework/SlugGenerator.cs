@@ -4,9 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using Unidecode;
 
-namespace SlugGenerator
+namespace SlugGenerator.CoreFramework
 {
     public static class SlugGenerator
     {

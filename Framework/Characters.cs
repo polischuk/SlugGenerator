@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Framework
+namespace SlugGenerator.Framework
 {
     internal static partial class UniDecoder
     {

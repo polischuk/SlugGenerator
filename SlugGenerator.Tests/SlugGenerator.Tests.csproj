@@ -72,9 +72,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework\Framework.csproj">
+    <ProjectReference Include="..\Framework\SlugGenerator.Framework.csproj">
       <Project>{5760fab1-f3a1-493d-83e6-f7d76e6a6069}</Project>
-      <Name>Framework</Name>
+      <Name>SlugGenerator.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
