@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace SlugGenerator.Framework
+namespace SlugGenerator
 {
     public static class SlugGenerator
     {

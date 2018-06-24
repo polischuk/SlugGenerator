@@ -1,4 +1,4 @@
-﻿namespace SlugGenerator.CoreFramework
+﻿namespace SlugGenerator
 {
     public interface ISlug
     {

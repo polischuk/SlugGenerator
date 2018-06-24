@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 
-namespace SlugGenerator.CoreFramework
+namespace SlugGenerator
 {
     /// <summary>
     /// ASCII transliterations of Unicode text
