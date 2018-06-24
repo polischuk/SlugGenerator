@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Framework;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.NUnit3;
@@ -9,7 +10,7 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 namespace SlugGenerator.Tests
 {
     [TestFixture]
-    public class SlugGenetatorTests
+    public class SlugGeneratorTests
     {
         [Test, TestCaseSource(nameof(GenerateSlugTestCases))]
         public void GenerateSlug_WithValidData_ShouldReturnSlugString(string text)

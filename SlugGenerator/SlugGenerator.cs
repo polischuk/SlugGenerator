@@ -4,11 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using UnidecodeSharpFork;
+using Unidecode;
 
 namespace SlugGenerator
 {
-    public static class SlugGenetator
+    public static class SlugGenerator
     {
         /// <summary>
         /// Method generate slug by text (multiple languages)
@@ -18,7 +18,7 @@ namespace SlugGenerator
         /// <returns>Slug for url</returns>
         public static string GenerateSlug(this string incomingString, string slugSeparator = "-")
         {
-            incomingString = incomingString.Unidecode();
+            incomingString = incomingString.UniDecode();
             var alphaNum = Regex.Replace(incomingString, @"[^a-zA-Z0-9\s]", string.Empty);
             alphaNum = Regex.Replace(alphaNum, @"\s+", slugSeparator);
             return alphaNum.ToLower();
